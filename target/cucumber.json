@@ -1,0 +1,91 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "line": 11,
+        "name": "Test",
+        "description": "",
+        "id": "youtube-search;test;;2",
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 17274012100,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "User launches browser and launches app",
+            "match": {
+              "location": "YouTubeSearchStepDef.launchBrowserAndApp()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 384822700,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "User enters search criteria \"TestNG annotations in Cucumber\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "TestNG annotations in Cucumber",
+                  "offset": 29
+                }
+              ],
+              "location": "YouTubeSearchStepDef.enterSearchCriteria(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 98850300,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "User clicks on search button",
+            "match": {
+              "location": "YouTubeSearchStepDef.clickSearchIcon()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1726122700,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "User finds search results",
+            "match": {
+              "location": "YouTubeSearchStepDef.validateSearchResult()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 1,
+            "name": "@Test1"
+          }
+        ]
+      }
+    ],
+    "name": "Youtube Search",
+    "description": "",
+    "id": "youtube-search",
+    "keyword": "Feature",
+    "uri": "YoutubeSearch.feature",
+    "tags": [
+      {
+        "line": 1,
+        "name": "@Test1"
+      }
+    ]
+  }
+]
