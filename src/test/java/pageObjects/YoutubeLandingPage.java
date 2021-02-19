@@ -36,7 +36,8 @@ public class YoutubeLandingPage {
     }
 
     public void verifySearchResult() {
-        Assert.assertTrue(searchResult.isDisplayed(),"");
+        Assert.assertTrue(searchResult.isDisplayed(),"Search Result is displayed as expected.");
+        ///////Assert.assertFalse(searchResult.isDisplayed(),"Search Result is displayed. Expected is no result.");
 
 
     }

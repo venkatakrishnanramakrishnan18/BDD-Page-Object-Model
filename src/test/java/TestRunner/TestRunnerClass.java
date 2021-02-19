@@ -1,6 +1,8 @@
 package TestRunner;
 
-import BaseTest.BaseTest;
+
+import Utilities.PropertiesFileReader;
+import com.cucumber.listener.Reporter;
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner; ///imports testNGCucumberRunner
@@ -9,16 +11,20 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.File;
+
 
 @CucumberOptions(
         features = "./features",
         glue = {"Stepdefs"},
         tags = {"@Test1"},
-        plugin = {"pretty","html:target/site/cucumber-pretty","json:target/cucumber.json"},
+        ////////plugin = {"pretty","html:target/site/cucumber-pretty","json:target/cucumber.json"},
+        plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"},
         monochrome = true)
 
 public class TestRunnerClass {
     private TestNGCucumberRunner testNGCucumberRunner;
+    PropertiesFileReader propertiesFileReader = new PropertiesFileReader();
     @BeforeClass(alwaysRun = true)
     public void setUpClass() throws Exception{
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
@@ -39,6 +45,11 @@ public class TestRunnerClass {
     @AfterClass(alwaysRun = true)
       public void tearDownClass() throws Exception{
         testNGCucumberRunner.finish();
+    }
+
+    @AfterClass
+    public void writeExtentReport() {
+        Reporter.loadXMLConfig(new File(propertiesFileReader.getReportConfigPath()));
     }
 
 

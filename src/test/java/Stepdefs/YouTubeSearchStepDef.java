@@ -1,6 +1,5 @@
 package Stepdefs;
 
-import BaseTest.BaseTest;
 import Managers.PageObjectManager;
 import Managers.WebDriverManager;
 import Utilities.PropertiesFileReader;
@@ -18,31 +17,26 @@ import java.io.File;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class YouTubeSearchStepDef extends BaseTest{
+public class YouTubeSearchStepDef {
 
     PropertiesFileReader fileReader;
     public static WebDriver driver;
     WebDriverManager webDriverManager;
     PageObjectManager pageObjectManager;
     YoutubeLandingPage youtubeLandingPage;
-    //////BaseTest baseTest;
 
-//    @Test
-//    public void launchBrowserAndOpenApp() throws Exception{
-//        fileReader = new PropertiesFileReader();
-//        String url = fileReader.getBrowserUrl();
-//        System.out.println("VKR:=  "+url);
-//        driver.get(url);
-//    }
 
     @Given ("^User launches browser and launches app$")
     public void launchBrowserAndApp() throws Exception{
         fileReader = new PropertiesFileReader();
         System.out.println("Driver path :: "+fileReader.getDriverPath());
+        webDriverManager = new WebDriverManager();
+        driver = webDriverManager.getDriver();
+        pageObjectManager=new PageObjectManager(driver);
 //        System.setProperty("webdriver.chrome.driver",fileReader.getDriverPath());
 //        driver = new ChromeDriver();
-        System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") + File.separator +"drivers"+File.separator+"chromedriver"+File.separator+"chromedriver.exe");
-        driver = new ChromeDriver();
+        ///System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") + File.separator +"drivers"+File.separator+"chromedriver"+File.separator+"chromedriver.exe");
+        ////driver = new ChromeDriver();
         driver.get(fileReader.getBrowserUrl());
         System.out.println("The url is "+fileReader.getBrowserUrl());
         driver.manage().timeouts().implicitlyWait(fileReader.getImplicitlyWait(), TimeUnit.SECONDS);
@@ -78,7 +72,10 @@ public class YouTubeSearchStepDef extends BaseTest{
         youtubeLandingPage = pageObjectManager.getYoutubeLandingPage();
         fileReader.getImplicitlyWait();
         youtubeLandingPage.verifySearchResult();
-        driver.quit();
+        ///driver.quit();
+        Thread.sleep(2000);
+        webDriverManager.closeDriver();
+
 //        Thread.sleep(8000);
 //        Assert.assertTrue(driver.findElement(By.xpath("//a[@id='video-title' and contains(@title,'Cucumber BDD')]")).isDisplayed(),"Search result successfully returned.");
         ///}
